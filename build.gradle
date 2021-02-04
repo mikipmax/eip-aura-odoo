@@ -1,0 +1,30 @@
+plugins {
+    id 'java-library'
+    id 'io.quarkus'  version '1.7.0.Final'
+}
+
+repositories {
+ 
+    jcenter()
+}
+
+ext {
+quarkusVersion='1.7.0.Final'
+}
+
+dependencies {
+implementation platform("io.quarkus:quarkus-universe-bom:${quarkusVersion}")
+implementation 'org.apache.camel.quarkus:camel-quarkus-main:${quarkusVersion}'
+implementation 'org.apache.camel.quarkus:camel-quarkus-platform-http:${quarkusVersion}'
+implementation 'org.apache.camel.quarkus:camel-quarkus-jackson:${quarkusVersion}'
+implementation 'org.apache.camel.quarkus:camel-quarkus-direct:${quarkusVersion}'
+implementation 'org.apache.camel.quarkus:camel-quarkus-http:${quarkusVersion}'
+implementation 'org.apache.camel.quarkus:camel-quarkus-core:${quarkusVersion}'
+implementation 'org.apache.camel.quarkus:camel-quarkus-rest:${quarkusVersion}'
+
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
