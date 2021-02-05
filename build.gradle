@@ -20,7 +20,7 @@ implementation 'org.apache.camel.quarkus:camel-quarkus-jackson:${quarkusVersion}
 implementation 'org.apache.camel.quarkus:camel-quarkus-direct:${quarkusVersion}'
 implementation 'org.apache.camel.quarkus:camel-quarkus-http:${quarkusVersion}'
 implementation 'org.apache.camel.quarkus:camel-quarkus-core:${quarkusVersion}'
-implementation 'org.apache.camel.quarkus:camel-quarkus-rest:${quarkusVersion}'
+compile group: 'org.jboss.logmanager', name: 'log4j2-jboss-logmanager', version: '1.0.0.Final'
 
 }
 
