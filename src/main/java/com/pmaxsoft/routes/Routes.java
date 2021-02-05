@@ -17,7 +17,11 @@ public class Routes extends RouteBuilder {
 	public void configure() throws Exception {
 		// Expongo servicio para que Aura envie el Cliente
 		from("platform-http:/cliente/insertar?httpMethodRestrict=POST").unmarshal()
-				.json(JsonLibrary.Jackson, Cliente.class).process(new TransformarObjeto()).end().marshal().json().end();
+				.json(JsonLibrary.Jackson, Cliente.class).process(new TransformarObjeto()).end().marshal().json()
+				.to("direct:test");
+
+		from("direct:test").removeHeaders("CamelHttp*").setHeader(Exchange.HTTP_METHOD, constant("POST"))
+				.to("http://190.155.31.122:8090/insertar").log("respuesta: ${body}");
 
 		/*
 		 * from("direct:test").removeHeaders("CamelHttp*").setHeader(Exchange.

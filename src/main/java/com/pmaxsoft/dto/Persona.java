@@ -12,9 +12,8 @@ public class Persona {
 
 	}
 
-	public Persona(int persId, String persNombre, String persDireccion) {
+	public Persona(String persNombre, String persDireccion) {
 
-		this.persId = persId;
 		this.persNombre = persNombre;
 		this.persDireccion = persDireccion;
 	}

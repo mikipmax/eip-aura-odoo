@@ -14,12 +14,12 @@ public class TransformarObjeto implements Processor {
 		Cliente cli = e.getIn().getBody(Cliente.class);
 		Persona pers = null;
 		if (cli != null) {
-			int id = cli.id;
+			
 			String nombre = cli.nombre;
 			String direccion = "Test de transformación: " + String.valueOf(cli.edad);
-			pers = new Persona(id, nombre, direccion);
+			pers = new Persona( nombre, direccion);
 		}
-		e.getOut().setBody(pers);
+		e.getOut().setBody(pers); 
 		
 
 	}
