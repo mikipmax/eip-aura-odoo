@@ -15,24 +15,26 @@ public class Routes extends RouteBuilder {
 
 	@Override
 	public void configure() throws Exception {
+		//Expongo servicio para que Aura envie el Cliente
+		from("platform-http:/cliente/insertar?httpMethodRestrict=POST").
+		unmarshal()
+				.json(JsonLibrary.Jackson, Cliente.class).process().body(Cliente.class, clientes::add).setBody()
+				.constant(clientes).end().marshal().json().end().to("direct:test"); 
+		
+		
+		
+		
+		from("direct:test").removeHeaders("CamelHttp*").setHeader(Exchange.HTTP_METHOD,constant("GET")).
+		to("http://jsonplaceholder.typicode.com/posts").log("respuesta: ${body}");
+
+	
+		
 		
 		/*from("platform-http:/cliente/insertar?httpMethodRestrict=POST").
 		unmarshal()
 				.json(JsonLibrary.Jackson, Cliente.class).process().body(Cliente.class, clientes::add).setBody()
-				.constant(clientes).to("direct:test").end().marshal().json(); 
-		//Revisar para consumir rest-- descomentar y reparar error
-		//con to lanzo otro proceso.
-		from("direct:test").setHeader(Exchange.HTTP_METHOD,constant("GET")).
-		to("http://jsonplaceholder.typicode.com/posts?bridgeEndpoint=true").
-		process(ex->ex.getIn().getBody()).end(); */		
-		
-		
-		
-		from("platform-http:/cliente/insertar?httpMethodRestrict=POST").
-		unmarshal()
-				.json(JsonLibrary.Jackson, Cliente.class).process().body(Cliente.class, clientes::add).setBody()
 				.constant(clientes).end().marshal().json(); 
-	
+	*/
 		
 	}
 }
