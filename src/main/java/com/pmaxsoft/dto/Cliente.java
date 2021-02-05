@@ -13,5 +13,10 @@ public class Cliente {
 		this.nombre = nombre;
 		this.edad = edad;
 	}
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", nombre=" + nombre + ", edad=" + edad + "]";
+	}
 
+	
 }
